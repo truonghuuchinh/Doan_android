@@ -1,0 +1,20 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:gravity="center_vertical"
+    >
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:src="@drawable/ic_action_menu"
+        android:id="@+id/img_icon"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txt_name"
+        android:text="Tên Item"
+        android:textSize="30sp"
+        android:paddingLeft="10dp"/>
+
+</LinearLayout>

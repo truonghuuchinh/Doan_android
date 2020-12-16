@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Doan</string>
+    <string name="action_Home">Home</string>
+    <string name="action_Favorite">Favorite</string>
+    <string name="action_HotNews">HotNews</string>
+    <string name="action_Account">Account</string>
+</resources>

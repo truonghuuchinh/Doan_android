@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:id="@+id/drawer_layout">
+        <!--        //Giao diên chính ứng dụng-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--            Menu của Toolbar-->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:onClick="startMenu"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/purple_500"
+                app:navigationIcon="@drawable/ic_action_menu" />
+            <!--            Giao diện nội dung  phía dưới-->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/view_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_above="@+id/bottom_nav" />
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottom_nav"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/black"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="2dp"
+                    app:menu="@menu/mennubottomnav"
+                    app:itemIconTint="@color/white"
+                    app:itemTextColor="@color/white"/>
+            </RelativeLayout>
+
+        </LinearLayout>
+        <!--        //Phần menu kế bên-->
+        <com.google.android.material.navigation.NavigationView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            android:id="@+id/navigation_view"
+            >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chuyên Mục"
+                android:textSize="30dp"
+                android:layout_marginTop="80dp"
+                android:textAlignment="center"
+                />
+            <ListView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/listview"
+                android:layout_marginTop="150dp"
+                />
+        </com.google.android.material.navigation.NavigationView>
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
+</LinearLayout>

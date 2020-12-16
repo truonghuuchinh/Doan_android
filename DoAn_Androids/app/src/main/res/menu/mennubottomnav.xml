@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:icon="@drawable/baseline_home_black_18"
+        android:id="@+id/action_home"
+        android:title="@string/action_Home"
+         />
+    <item
+        android:icon="@drawable/sharp_local_fire_department_black_36"
+        android:id="@+id/action_hotNews"
+        android:title="@string/action_HotNews"
+        />
+    <item
+        android:icon="@drawable/baseline_favorite_black_36"
+        android:id="@+id/action_favorite"
+        android:title="@string/action_Favorite" />
+    <item
+        android:icon="@drawable/baseline_account_circle_black_36"
+        android:id="@+id/action_Account"
+        android:title="@string/action_Account" />
+
+</menu>
