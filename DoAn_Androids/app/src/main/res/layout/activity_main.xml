@@ -1,73 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="match_parent">
 
 
     <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        android:id="@+id/drawer_layout">
+        android:fitsSystemWindows="true">
         <!--        //Giao diên chính ứng dụng-->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
             <!--            Menu của Toolbar-->
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:onClick="startMenu"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/purple_500"
-                app:navigationIcon="@drawable/ic_action_menu" />
-            <!--            Giao diện nội dung  phía dưới-->
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.Toolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="@color/purple_500"
+                    android:onClick="startMenu"
+
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:navigationIcon="@drawable/ic_action_menu" />
+                <!--           search-->
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/search_bar"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:queryHint="Search Here"
+                    android:background="@color/purple_500"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toEndOf="@+id/toolbar"
+                    app:layout_constraintTop_toTopOf="parent"
+                    />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--  Giao diện nội dung  phía dưới-->
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <androidx.viewpager.widget.ViewPager
                     android:id="@+id/view_item"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_above="@+id/bottom_nav" />
+                    android:layout_above="@+id/bottom_nav"
+                    android:layout_marginBottom="0dp" />
 
                 <com.google.android.material.bottomnavigation.BottomNavigationView
                     android:id="@+id/bottom_nav"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/black"
                     android:layout_alignParentBottom="true"
                     android:layout_marginBottom="2dp"
-                    app:menu="@menu/mennubottomnav"
+                    android:background="@color/teal_700"
                     app:itemIconTint="@color/white"
-                    app:itemTextColor="@color/white"/>
+                    app:itemIconSize="30sp"
+                    app:itemTextColor="@color/bottom_color_nav"
+                    app:menu="@menu/mennubottomnav" />
             </RelativeLayout>
 
         </LinearLayout>
         <!--        //Phần menu kế bên-->
         <com.google.android.material.navigation.NavigationView
+            android:id="@+id/navigation_view"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            android:id="@+id/navigation_view"
-            >
+            android:fitsSystemWindows="true">
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Chuyên Mục"
-                android:textSize="30dp"
                 android:layout_marginTop="80dp"
+                android:text="Chuyên Mục"
                 android:textAlignment="center"
-                />
+                android:textSize="30dp" />
+
             <ListView
+                android:id="@+id/listview"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/listview"
-                android:layout_marginTop="150dp"
-                />
+                android:layout_marginTop="150dp" />
         </com.google.android.material.navigation.NavigationView>
 
     </androidx.drawerlayout.widget.DrawerLayout>
