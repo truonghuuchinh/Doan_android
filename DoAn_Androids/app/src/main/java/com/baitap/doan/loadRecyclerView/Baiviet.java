@@ -5,10 +5,9 @@ public class Baiviet {
     String content;
     String image;
 
-    public Baiviet(String title, String content, String image) {
+    public Baiviet(String title, String content) {
         this.title = title;
         this.content = content;
-        this.image = image;
     }
 
     public String getTitle() {

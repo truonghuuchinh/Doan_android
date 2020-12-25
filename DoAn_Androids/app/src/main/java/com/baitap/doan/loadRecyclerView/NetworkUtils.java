@@ -1,4 +1,4 @@
-package com.baitap.doan;
+package com.baitap.doan.loadRecyclerView;
 
 import android.net.Uri;
 

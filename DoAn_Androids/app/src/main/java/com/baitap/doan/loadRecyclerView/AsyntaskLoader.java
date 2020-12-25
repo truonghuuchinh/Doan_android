@@ -1,27 +1,26 @@
 package com.baitap.doan.loadRecyclerView;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.loader.content.AsyncTaskLoader;
 
-import com.baitap.doan.NetworkUtils;
-import com.baitap.doan.fragmentMenu.Fragment_Sport;
+import java.util.LinkedList;
 
 public class AsyntaskLoader extends AsyncTaskLoader<String> {
-    private String book;
-    public AsyntaskLoader(@NonNull Context context,String books) {
-        super(context);
-        book=books;
-    }
+    private String city;
 
+    public AsyntaskLoader(@NonNull Context context, String city) {
+        super(context);
+        this.city = city;
+    }
     @Nullable
     @Override
     public String loadInBackground() {
-        return NetworkUtils.getWeather(book);
+        return NetworkUtils.getWeather(this.city);
     }
-
     @Override
     protected void onStartLoading() {
         super.onStartLoading();

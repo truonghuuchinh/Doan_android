@@ -1,5 +1,7 @@
 package com.baitap.doan;
 
+import android.app.Activity;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -55,7 +57,6 @@ public class Viewpager_Adapter  extends FragmentStatePagerAdapter {
                 return  new FragmentHome();
         }
     }
-
     @Override
     public int getCount() {
         return 12;

@@ -45,11 +45,13 @@
                     app:layout_constraintStart_toEndOf="@+id/toolbar"
                     app:layout_constraintTop_toTopOf="parent"
                     />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!--  Giao diện nội dung  phía dưới-->
             <RelativeLayout
                 android:layout_width="match_parent"
+                android:orientation="vertical"
                 android:layout_height="match_parent">
 
                 <androidx.viewpager.widget.ViewPager
