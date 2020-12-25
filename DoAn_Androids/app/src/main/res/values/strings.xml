@@ -4,4 +4,13 @@
     <string name="action_Favorite">Favorite</string>
     <string name="action_HotNews">HotNews</string>
     <string name="action_Account">Account</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="Sport_fragment">Sport fragment</string>
+    <string name="News_fragment">News fragment</string>
+    <string name="Music_fragment">Music fragment</string>
+    <string name="search_fragment">Search here.....</string>
+    <!--    //Thêm đăng nhập facebook-->
+    <string name="facebook_app_id">587088402138086</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
