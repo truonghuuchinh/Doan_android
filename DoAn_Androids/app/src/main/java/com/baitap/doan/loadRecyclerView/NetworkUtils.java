@@ -11,11 +11,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class NetworkUtils {
-    public static String getWeather(String city) {
-        Uri builtURI = Uri.parse("http://api.openweathermap.org/data/2.5/weather?").buildUpon()
-                .appendQueryParameter("q", city)
-                .appendQueryParameter("appid", "a05b9739ca3010d2e99bfff725cee7de")
-                .build();
+    public static String getWeather(String api) {
+        Uri builtURI = Uri.parse(api).buildUpon().build();
         try {
             URL requestURL = new URL(builtURI.toString());
             return callAPI(requestURL, "GET");
