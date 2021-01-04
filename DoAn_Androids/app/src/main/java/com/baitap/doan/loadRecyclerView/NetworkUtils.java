@@ -20,7 +20,6 @@ public class NetworkUtils {
             return null;
         }
     }
-
     public static String callAPI(URL requestURL, String method) {
         HttpURLConnection urlConnection = null;
         String result = "";
