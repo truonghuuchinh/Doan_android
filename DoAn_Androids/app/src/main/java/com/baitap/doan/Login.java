@@ -78,7 +78,7 @@ public class Login extends AppCompatActivity implements LoaderManager.LoaderCall
 
     public void dangNhap(View view) {
         Bundle data = new Bundle();
-        data.putString("api", "http://10.0.2.2:8000/api/users");
+        data.putString("api", "http://10.0.2.2:8000//apiusers");
         if (loaderManager.getLoader(MaDangNhap) == null) {
             loaderManager.initLoader(MaDangNhap, data, Login.this);
         } else {

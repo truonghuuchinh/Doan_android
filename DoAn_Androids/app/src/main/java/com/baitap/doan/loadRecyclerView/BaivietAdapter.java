@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,11 +15,13 @@ import com.baitap.doan.R;
 
 import java.util.LinkedList;
 
-public class BaivietAdapter extends  RecyclerView.Adapter<BaivietAdapter.BaivietHolder>  {
+public class BaivietAdapter extends  RecyclerView.Adapter<BaivietAdapter.BaivietHolder> implements Filterable {
     LinkedList<Baiviet> mData;
+    LinkedList<Baiviet> mDataOld;
     LayoutInflater inflater;
     public BaivietAdapter(LinkedList<Baiviet> mData, Context context) {
         this.mData = mData;
+        this.mDataOld = mData;
         inflater=LayoutInflater.from(context);
     }
     @NonNull
@@ -38,6 +42,7 @@ public class BaivietAdapter extends  RecyclerView.Adapter<BaivietAdapter.Baiviet
         return mData.size();
     }
 
+
     class  BaivietHolder extends  RecyclerView.ViewHolder{
         TextView Title;
         TextView Content;
@@ -48,5 +53,35 @@ public class BaivietAdapter extends  RecyclerView.Adapter<BaivietAdapter.Baiviet
             this.Title=itemView.findViewById(R.id.title);
             this.Content=itemView.findViewById(R.id.content);
         }
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String strSearch = constraint.toString();
+                if(strSearch.isEmpty()) {
+                    mData = mDataOld;
+                } else {
+                    LinkedList<Baiviet> list = new LinkedList<>();
+                    for (Baiviet baiviet : mDataOld) {
+                        if(baiviet.getTitle().toLowerCase().contains(strSearch.toLowerCase()) || baiviet.getMota().toLowerCase().contains(strSearch.toLowerCase())) {
+                            list.add(baiviet);
+                        }
+                    }
+                    mData = list;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = mData;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+                mData = (LinkedList<Baiviet>) results.values;
+                notifyDataSetChanged();
+            }
+        };
     }
 }
