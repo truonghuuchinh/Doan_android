@@ -62,7 +62,7 @@ public class Fragment_Sport extends Fragment implements LoaderManager.LoaderCall
     }
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
-        Log.d("message",data);
+        //Log.d("message",data);
         try {
             String Title=null;
             String Content=null;
