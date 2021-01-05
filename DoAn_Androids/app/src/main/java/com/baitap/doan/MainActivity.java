@@ -24,7 +24,6 @@ import android.widget.Toast;
 
 import com.baitap.doan.fragment.FragmentHome;
 import com.baitap.doan.fragmentMenu.Fragment_Sport;
-import com.baitap.doan.loadRecyclerView.BaivietAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -32,7 +31,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private  static   int Flag=0;
-    SearchView searchView;
+   // SearchView searchView;
     //Phần menu
     Toolbar toolbar;
     DrawerLayout drawerLayout;
@@ -44,13 +43,11 @@ public class MainActivity extends AppCompatActivity {
     //Phần nội dung ứng dụng
     BottomNavigationView navigationView;
     ViewPager viewPager;
-    BaivietAdapter baivietAdapter;
     //Tablayout
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
 
         Anhxa();
 
@@ -79,19 +76,6 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                baivietAdapter.getFilter().filter(query);
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                baivietAdapter.getFilter().filter(newText);
-                return false;
-            }
-        });
     }
     void Anhxa(){
         viewPager=findViewById(R.id.view_item);
@@ -99,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
         navigationViews=(NavigationView)findViewById(R.id.navigation_view);
+//        searchView=(SearchView)findViewById(R.id.search_bar);
         listView=(ListView)findViewById(R.id.listview);
-        searchView = (SearchView)findViewById(R.id.search_bar);
     }
     private void actionMenu() {
         arrayList=new ArrayList<ItemMenu>();
