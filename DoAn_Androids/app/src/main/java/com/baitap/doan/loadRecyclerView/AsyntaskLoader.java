@@ -10,16 +10,16 @@ import androidx.loader.content.AsyncTaskLoader;
 import java.util.LinkedList;
 
 public class AsyntaskLoader extends AsyncTaskLoader<String> {
-    private String city;
+    private String api;
 
-    public AsyntaskLoader(@NonNull Context context, String city) {
+    public AsyntaskLoader(@NonNull Context context, String api) {
         super(context);
-        this.city = city;
+        this.api = api;
     }
     @Nullable
     @Override
     public String loadInBackground() {
-        return NetworkUtils.getWeather(this.city);
+        return NetworkUtils.getWeather(this.api);
     }
     @Override
     protected void onStartLoading() {

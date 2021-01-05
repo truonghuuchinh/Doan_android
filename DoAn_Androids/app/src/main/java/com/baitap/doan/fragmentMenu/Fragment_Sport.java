@@ -47,7 +47,7 @@ public class Fragment_Sport extends Fragment implements LoaderManager.LoaderCall
         recyclerView=itemView.findViewById(R.id.rv_list);
         loaderManager=LoaderManager.getInstance(this);
         Bundle data = new Bundle();
-        data.putString("city", "Ho Chi Minh");
+        data.putString("api", "http://10.0.2.2:8000/api/baiviet");
         if (loaderManager.getLoader(WEATHER_LOADER_ID) == null) {
             loaderManager.initLoader(WEATHER_LOADER_ID, data, Fragment_Sport.this);
         } else {
@@ -58,7 +58,7 @@ public class Fragment_Sport extends Fragment implements LoaderManager.LoaderCall
     @NonNull
     @Override
     public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
-        return new AsyntaskLoader(getContext(),args.getString("city"));
+        return new AsyntaskLoader(getContext(),args.getString("api"));
     }
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
@@ -68,17 +68,16 @@ public class Fragment_Sport extends Fragment implements LoaderManager.LoaderCall
             String Content=null;
             listBook=new LinkedList<Baiviet>();
             JSONObject jsonObject = new JSONObject(data);
-//            JSONObject mainObject = jsonObject.getJSONObject("weather");
-            JSONArray weather=jsonObject.getJSONArray("weather");
-            JSONObject item= (JSONObject) weather.get(0);
-               Title=String.valueOf(item.get("main"));
-               Content=String.valueOf(item.get("description"));
-               listBook.add(new Baiviet(Title,Content));
+            JSONArray dataArray=jsonObject.getJSONArray("data");
+            for (int i=0;i<dataArray.length();i++){
+                JSONObject dataObject=(JSONObject)dataArray.get(i);
+                Title=String.valueOf(dataObject.get("tieude"));
+                Content=String.valueOf(dataObject.get("mota"));
+                listBook.add(new Baiviet(0,Title,null,Content,null,null));
+            }
             bookAdapter=new BaivietAdapter(listBook,getContext());
             recyclerView.setAdapter(bookAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-            //Log.d("TEST_LOG", "Temp: " + String.valueOf(item.get("id")));
-            //Log.d("TEST_LOG", "Humidity: " + String.valueOf(weather.getDouble("main")));
 
         } catch (JSONException e) {
             e.printStackTrace();
