@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private  static   int Flag=0;
+   // SearchView searchView;
     //Phần menu
     Toolbar toolbar;
     DrawerLayout drawerLayout;
@@ -81,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
         navigationViews=(NavigationView)findViewById(R.id.navigation_view);
+//        searchView=(SearchView)findViewById(R.id.search_bar);
         listView=(ListView)findViewById(R.id.listview);
     }
     private void actionMenu() {
