@@ -21,8 +21,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class Login extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
-
-
+    public  static String  tenUser=null;
+    public  static String  dateUser=null;
+    public  static String  emailUser=null;
     EditText editUsername, editPassword;
     LoaderManager loaderManager;
     public static int MaDangNhap = 1000;
@@ -52,19 +53,22 @@ public class Login extends AppCompatActivity implements LoaderManager.LoaderCall
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
         try {
             int dem = 0;
-            JSONObject jsonObject = new JSONObject(data);
-            Log.d("test",jsonObject.toString());
-            JSONArray dataArray=jsonObject.getJSONArray("data");
+
+            JSONArray dataArray=new JSONArray(data);
             for (int i=0;i<dataArray.length();i++){
                 JSONObject dataObject=(JSONObject)dataArray.get(i);
                 if(editUsername.getText().toString().equals(dataObject.getString("username")) && editPassword.getText().toString().equals(dataObject.getString("password"))) {
                     Intent intent = new Intent(this, MainActivity.class);
                     startActivity(intent);
+                    tenUser=dataObject.getString("username");
+                    dateUser=dataObject.getString("ngaysinh");
+                    emailUser=dataObject.getString("email");
                     dem++;
+                    break;
                 }
             }
             if(dem==0) {
-                Toast.makeText(this, "Đăng nhập thất bại", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Đăng nhập thất bại,tài khoản hoặc mật khẩu không chính xác", Toast.LENGTH_SHORT).show();
             }
         } catch (JSONException e) {
             e.printStackTrace();

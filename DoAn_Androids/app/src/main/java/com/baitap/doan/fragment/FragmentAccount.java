@@ -19,9 +19,6 @@ import com.baitap.doan.R;
 public class FragmentAccount extends Fragment {
     private  View mview;
     private Button btn_dangnhap;
-
-
-
     @Nullable
     @Override
 

@@ -37,7 +37,12 @@ public class Viewpager_Adapter  extends FragmentStatePagerAdapter {
             case 2:
                 return  new FragmentFavorite();
             case 3:
-                return  new FragmentAccount();
+                if(Login.tenUser==null){
+                    return  new FragmentAccount();
+
+                }else {
+                    return  new Fragment_Information_User();
+                }
             default:
                 return  new FragmentHome();
         }
