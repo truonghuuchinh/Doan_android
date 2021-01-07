@@ -17,6 +17,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private  static   int Flag=0;
-    SearchView searchView;
+    ImageView imageViewSearch;
     //Phần menu
     Toolbar toolbar;
     DrawerLayout drawerLayout;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
         Anhxa();
         actionMenu();
         setUpViewPager();
+
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -81,9 +83,16 @@ public class MainActivity extends AppCompatActivity {
         navigationView=findViewById(R.id.bottom_nav);
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
+        imageViewSearch=findViewById(R.id.search_Bar);
         navigationViews=(NavigationView)findViewById(R.id.navigation_view);
-        searchView=(SearchView)findViewById(R.id.search_bar);
         listView=(ListView)findViewById(R.id.listview);
+        imageViewSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     private void actionMenu() {
         arrayList=new ArrayList<ItemMenu>();

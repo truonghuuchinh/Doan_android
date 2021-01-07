@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Doan">
-        <activity android:name=".DetailBaiviet"></activity>
+        <activity android:name=".SearchActivity" android:parentActivityName=".MainActivity"></activity>
+        <activity android:name=".DetailBaiviet" />
         <activity
             android:name=".SigUp"
             android:parentActivityName=".Login" />

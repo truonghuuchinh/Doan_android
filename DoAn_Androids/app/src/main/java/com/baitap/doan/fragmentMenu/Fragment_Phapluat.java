@@ -65,6 +65,7 @@ public class Fragment_Phapluat extends Fragment implements LoaderManager.LoaderC
             String Title=null;
             String Content=null;
             String Image=null;
+            String Description=null;
             listBook=new LinkedList<Baiviet>();
             JSONObject jsonObject = new JSONObject(data);
             JSONArray dataArray=jsonObject.getJSONArray("data");
@@ -72,10 +73,11 @@ public class Fragment_Phapluat extends Fragment implements LoaderManager.LoaderC
                 JSONObject dataObject=(JSONObject)dataArray.get(i);
                 String id=dataObject.get("chuyenmuc_id").toString();
                 if(id.equals("4")) {
-                    Title = String.valueOf(dataObject.get("tieude"));
-                    Content = String.valueOf(dataObject.get("mota"));
+                    Title=String.valueOf(dataObject.get("tieude"));
                     Image = String.valueOf(dataObject.get("hinhanh"));
-                    listBook.add(new Baiviet(0, Title, null, Content, Image, null));
+                    Content=String.valueOf(dataObject.get("noidung"));
+                    Description=String.valueOf(dataObject.get("mota"));
+                    listBook.add(new Baiviet(0,Title,Description,Content,Image,null));
                 }
             }
             bookAdapter=new BaivietAdapter(listBook,getContext());

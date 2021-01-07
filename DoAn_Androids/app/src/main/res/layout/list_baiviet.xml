@@ -25,9 +25,16 @@
         android:layout_height="wrap_content"
         android:id="@+id/content"
         android:text="Content"
-        android:layout_margin="10dp"
+        android:layout_margin="16dp"
         android:textSize="13sp" />
 
+    <ImageView
+        android:layout_width="30dp"
+        android:layout_height="20dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="10dp"
+        android:src="@drawable/bookmark" />
 
 
 </LinearLayout>

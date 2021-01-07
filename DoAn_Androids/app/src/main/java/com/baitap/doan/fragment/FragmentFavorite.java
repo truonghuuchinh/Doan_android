@@ -64,6 +64,7 @@ public class FragmentFavorite extends Fragment implements LoaderManager.LoaderCa
             String Title=null;
             String Content=null;
             String Image=null;
+            String Description=null;
             listBook=new LinkedList<Baiviet>();
             JSONObject jsonObject = new JSONObject(data);
             JSONArray dataArray=jsonObject.getJSONArray("data");
@@ -71,8 +72,9 @@ public class FragmentFavorite extends Fragment implements LoaderManager.LoaderCa
                 JSONObject dataObject=(JSONObject)dataArray.get(i);
                 Title=String.valueOf(dataObject.get("tieude"));
                 Image = String.valueOf(dataObject.get("hinhanh"));
-                Content=String.valueOf(dataObject.get("mota"));
-                listBook.add(new Baiviet(0,Title,null,Content,Image,null));
+                Content=String.valueOf(dataObject.get("noidung"));
+                Description=String.valueOf(dataObject.get("mota"));
+                listBook.add(new Baiviet(0,Title,Description,Content,Image,null));
             }
             bookAdapter=new BaivietAdapter(listBook,getContext());
             RecyclerView.ItemDecoration itemDecoration=new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);

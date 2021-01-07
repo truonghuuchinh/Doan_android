@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
@@ -13,6 +13,7 @@
     tools:context=".DetailBaiviet">
 
     <TextView
+
         android:id="@+id/tieudeDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -21,19 +22,19 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-    <ImageView
-        android:id="@+id/imgDetail"
-        android:layout_width="match_parent"
-        android:layout_height="200sp"
-        android:src="@drawable/logobaosss" />
+<!--    <ImageView-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:id="@+id/imgDetail"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="200sp"-->
+<!--        android:src="@drawable/logobaosss" />-->
 
-    <TextView
-        android:id="@+id/noidungDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Nội dung"
-        android:textSize="15sp" />
+  <WebView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      
+      android:id="@+id/contents"
+      tools:ignore="WebViewLayout" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,7 +48,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textColor="@color/black"
-        android:textSize="14sp"
+        android:textSize="17sp"
         android:textStyle="italic" />
 
     <Button
