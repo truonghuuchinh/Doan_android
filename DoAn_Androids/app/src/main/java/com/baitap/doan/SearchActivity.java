@@ -1,22 +1,18 @@
-package com.baitap.doan.fragment;
-
-import android.content.Context;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+package com.baitap.doan;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.baitap.doan.R;
+import android.os.Bundle;
+
+import com.baitap.doan.fragment.FragmentHome;
 import com.baitap.doan.loadRecyclerView.AsyntaskLoader;
 import com.baitap.doan.loadRecyclerView.Baiviet;
 import com.baitap.doan.loadRecyclerView.BaivietAdapter;
@@ -27,34 +23,46 @@ import org.json.JSONObject;
 
 import java.util.LinkedList;
 
-public class FragmentHotnews extends Fragment implements LoaderManager.LoaderCallbacks<String> {
+public class SearchActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
     private RecyclerView recyclerView;
     BaivietAdapter bookAdapter;
     LinkedList<Baiviet> listBook;
+    SearchView searchView;
     static final int WEATHER_LOADER_ID = 1000;
     LoaderManager loaderManager;
-    View itemView;
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        itemView=inflater.inflate(R.layout.fragmenthome, container, false);
-        recyclerView=itemView.findViewById(R.id.rv_list);
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_search);
+        recyclerView=findViewById(R.id.rv_list);
+        searchView=findViewById(R.id.search_baiviet);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                bookAdapter.getFilter().filter(query);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                bookAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
         loaderManager=LoaderManager.getInstance(this);
         Bundle data = new Bundle();
-        data.putString("api", "http://10.0.2.2:8000/api/tin-hot");
+        data.putString("api", "http://10.0.2.2:8000/api/baiviet");
         if (loaderManager.getLoader(WEATHER_LOADER_ID) == null) {
-            loaderManager.initLoader(WEATHER_LOADER_ID, data, FragmentHotnews.this);
+            loaderManager.initLoader(WEATHER_LOADER_ID, data, this);
         } else {
-            loaderManager.restartLoader(WEATHER_LOADER_ID, data, FragmentHotnews.this);
+            loaderManager.restartLoader(WEATHER_LOADER_ID, data, this);
         }
-        return  itemView;
     }
 
     @NonNull
     @Override
     public Loader<String> onCreateLoader(int id, @Nullable Bundle args) {
-        return new AsyntaskLoader(getContext(),args.getString("api"));
+        return new AsyntaskLoader(this,args.getString("api"));
     }
 
     @Override
@@ -75,11 +83,11 @@ public class FragmentHotnews extends Fragment implements LoaderManager.LoaderCal
                 Description=String.valueOf(dataObject.get("mota"));
                 listBook.add(new Baiviet(0,Title,Description,Content,Image,null,null));
             }
-            bookAdapter=new BaivietAdapter(listBook,getContext());
-            RecyclerView.ItemDecoration itemDecoration=new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
+            bookAdapter=new BaivietAdapter(listBook,this);
+            RecyclerView.ItemDecoration itemDecoration=new DividerItemDecoration(this,DividerItemDecoration.VERTICAL);
             recyclerView.addItemDecoration(itemDecoration);
             recyclerView.setAdapter(bookAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         } catch (JSONException e) {
             e.printStackTrace();

@@ -62,18 +62,24 @@ public class Fragment_Sport extends Fragment implements LoaderManager.LoaderCall
     }
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
-        //Log.d("message",data);
         try {
             String Title=null;
             String Content=null;
+            String Image=null;
+            String Description=null;
             listBook=new LinkedList<Baiviet>();
             JSONObject jsonObject = new JSONObject(data);
             JSONArray dataArray=jsonObject.getJSONArray("data");
             for (int i=0;i<dataArray.length();i++){
                 JSONObject dataObject=(JSONObject)dataArray.get(i);
-                Title=String.valueOf(dataObject.get("tieude"));
-                Content=String.valueOf(dataObject.get("mota"));
-                listBook.add(new Baiviet(0,Title,null,Content,null,null));
+                String id=dataObject.get("chuyenmuc_id").toString();
+                if(id.equals("1")) {
+                    Title=String.valueOf(dataObject.get("tieude"));
+                    Image = String.valueOf(dataObject.get("hinhanh"));
+                    Content=String.valueOf(dataObject.get("noidung"));
+                    Description=String.valueOf(dataObject.get("mota"));
+                    listBook.add(new Baiviet(0,Title,Description,Content,Image,null,null));
+                }
             }
             bookAdapter=new BaivietAdapter(listBook,getContext());
             recyclerView.setAdapter(bookAdapter);

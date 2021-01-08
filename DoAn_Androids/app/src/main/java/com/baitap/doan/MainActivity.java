@@ -2,6 +2,7 @@ package com.baitap.doan;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
@@ -16,11 +17,13 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.baitap.doan.fragment.FragmentContainHome;
 import com.baitap.doan.fragment.FragmentHome;
 import com.baitap.doan.fragmentMenu.Fragment_Sport;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -30,6 +33,7 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
     private  static   int Flag=0;
+    ImageView imageViewSearch;
     //Phần menu
     Toolbar toolbar;
     DrawerLayout drawerLayout;
@@ -46,11 +50,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         Anhxa();
-
         actionMenu();
         setUpViewPager();
+
         navigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -80,8 +83,16 @@ public class MainActivity extends AppCompatActivity {
         navigationView=findViewById(R.id.bottom_nav);
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
+        imageViewSearch=findViewById(R.id.search_Bar);
         navigationViews=(NavigationView)findViewById(R.id.navigation_view);
         listView=(ListView)findViewById(R.id.listview);
+        imageViewSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(MainActivity.this,SearchActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     private void actionMenu() {
         arrayList=new ArrayList<ItemMenu>();
@@ -105,7 +116,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if(Flag==1){
-
                 }else {
                     if (position == 3) {
                         viewPager.setCurrentItem(3);
@@ -145,47 +155,41 @@ public class MainActivity extends AppCompatActivity {
     public void startMenu(View view) {
         drawerLayout.openDrawer(GravityCompat.START);
     }
-
     public void clickMenuItem(View view) {
-        int n=1;
+        int n=1,position=0;
         LinearLayout layout = (LinearLayout)view;
-        Log.d("message",  String.valueOf(layout.getId()));
         TextView txt = (TextView)layout.findViewById(R.id.txt_name);
         if(txt.getText().toString().contains("Thể Thao")) {
-            viewPager.setCurrentItem(4);
-
+            position=1;
         }
         if(txt.getText().toString().contains("Thời Sự")){
-            viewPager.setCurrentItem(5);
-
+            position=2;
         }
         if(txt.getText().toString().contains("Âm Nhạc")){
-            viewPager.setCurrentItem(6);
+           position=3;
 
         }
         if(txt.getText().toString().contains("Pháp Luật")){
-            viewPager.setCurrentItem(7);
-
+            position=4;
         }
         if(txt.getText().toString().contains("Giáo Dục")){
-            viewPager.setCurrentItem(8);
-
+            position=5;
         }
         if(txt.getText().toString().contains("Du Lịch")){
-            viewPager.setCurrentItem(9);
-
+            position=6;
         }
         if(txt.getText().toString().contains("Khoa Học")){
-            viewPager.setCurrentItem(10);
-
+            position=7;
         }
         if(txt.getText().toString().contains("Xe")){
-            viewPager.setCurrentItem(11);
+            position=8;
         }
+        FragmentContainHome.viewPager.setCurrentItem(position);
         Flag=n;
             Toast.makeText(MainActivity.this, txt.getText().toString(), Toast.LENGTH_SHORT).show();
             drawerLayout.closeDrawer(GravityCompat.START);
             navigationView.getMenu().findItem(R.id.action_home).setChecked(true);
     }
+
 
 }
