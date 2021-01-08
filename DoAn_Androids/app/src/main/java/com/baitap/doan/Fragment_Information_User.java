@@ -15,7 +15,7 @@ import android.widget.Toast;
 
 public class Fragment_Information_User extends Fragment {
     private  View itemView;
-    private TextView username,dateUsername,emailUsername,Logout;
+    private TextView username,dateUsername,emailUsername,Logout,goToPHND;
     ImageView imageViewLOgout;
 
 
@@ -27,7 +27,18 @@ public class Fragment_Information_User extends Fragment {
         username=itemView.findViewById(R.id.tenUsername);
         dateUsername=itemView.findViewById(R.id.dateUser);
         emailUsername=itemView.findViewById(R.id.emailUser);
+        goToPHND = itemView.findViewById(R.id.textView7);
         Logout=itemView.findViewById(R.id.textView5);
+
+        goToPHND.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(),PhanHoiNguoiDung.class);
+                startActivity(intent);
+            }
+        });
+        
+
         Logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
