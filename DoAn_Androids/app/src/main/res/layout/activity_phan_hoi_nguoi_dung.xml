@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:weightSum="4"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+
+        android:id="@+id/txtContent"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="20dp"
+        android:layout_weight="1"
+        android:background="@color/xam"
+        android:gravity="top"
+        android:hint="Nội dung phản hồi."
+        android:inputType="textImeMultiLine"
+        android:maxLines="50"
+        android:textColor="@color/black" />
+
+    <Button
+        android:id="@+id/btnGui"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:layout_marginLeft="150dp"
+        android:layout_weight="0.25"
+        android:text="Gửi"
+        android:textColor="@color/material_on_background_emphasis_high_type" />
+
+
+</LinearLayout>
