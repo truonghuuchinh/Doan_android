@@ -185,6 +185,9 @@ public class BaivietAdapter extends  RecyclerView.Adapter<BaivietAdapter.Baiviet
                 if(response.equals("successFavorite")){
                     Toast.makeText(context,"Đã thêm",Toast.LENGTH_SHORT).show();
                 }
+                if(response.equals("Identical")){
+                    Toast.makeText(context,"Đã có trong danh sách yêu thích",Toast.LENGTH_SHORT).show();
+                }
 
             }
         }, new Response.ErrorListener() {

@@ -50,5 +50,6 @@ public class Fragment_Information_User extends Fragment {
         Intent intent = new Intent(getContext(), MainActivity.class);
         startActivity(intent);
         Login.tenUser=null;
+        Login.IdlUser=null;
     }
 }

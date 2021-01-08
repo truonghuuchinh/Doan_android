@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -67,9 +68,7 @@ public class FragmentFavorite extends Fragment implements LoaderManager.LoaderCa
 
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
-        if(data==null){
-            Toast.makeText(getContext(),"Bạn chưa đăng nhập",Toast.LENGTH_SHORT).show();
-        }else {
+        if(data!=null){
             try {
                 String Title = null;
                 String Content = null;
