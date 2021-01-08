@@ -84,7 +84,7 @@ public class Fragment_Dulich extends Fragment implements LoaderManager.LoaderCal
                     Image = String.valueOf(dataObject.get("hinhanh"));
                     Content=String.valueOf(dataObject.get("noidung"));
                     Description=String.valueOf(dataObject.get("mota"));
-                    listBook.add(new Baiviet(0,Title,Description,Content,Image,null));
+                    listBook.add(new Baiviet(0,Title,Description,Content,Image,null,null));
                 }
             }
             bookAdapter=new BaivietAdapter(listBook,getContext());

@@ -17,16 +17,16 @@ public class DetailBaiviet extends AppCompatActivity {
 
     TextView title;
     WebView webView;
-  //  ImageView imageView;
+    ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_baiviet);
         title=findViewById(R.id.tieudeDetail);
         webView=findViewById(R.id.contents);
-       // imageView=findViewById(R.id.imgDetail);
+        imageView=findViewById(R.id.imgDetail);
         Intent intent=getIntent();
-        //Picasso.with(this).load(intent.getStringExtra("http://10.0.2.2:8000/img/upload/"+BaivietAdapter.Hinanh_Baiviet)).into(imageView);
+        Picasso.with(this).load("http://10.0.2.2:8000/img/upload/"+intent.getStringExtra(BaivietAdapter.Hinanh_Baiviet).toString()).into(imageView);
         title.setText(intent.getStringExtra(BaivietAdapter.Title_Baiviet));
         webView.loadData(intent.getStringExtra(BaivietAdapter.Noidung_Baiviet), "text/html; charset=utf-8", null);
     }

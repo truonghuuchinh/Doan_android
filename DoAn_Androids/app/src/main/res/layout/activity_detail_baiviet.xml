@@ -22,12 +22,12 @@
         android:textSize="20sp"
         android:textStyle="bold" />
 
-<!--    <ImageView-->
-<!--        android:layout_marginTop="20dp"-->
-<!--        android:id="@+id/imgDetail"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="200sp"-->
-<!--        android:src="@drawable/logobaosss" />-->
+    <ImageView
+        android:layout_marginTop="20dp"
+        android:id="@+id/imgDetail"
+        android:layout_width="match_parent"
+        android:layout_height="200sp"
+        android:src="@drawable/logobaosss" />
 
   <WebView
       android:layout_width="match_parent"

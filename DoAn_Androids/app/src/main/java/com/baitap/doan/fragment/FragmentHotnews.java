@@ -42,7 +42,7 @@ public class FragmentHotnews extends Fragment implements LoaderManager.LoaderCal
         recyclerView=itemView.findViewById(R.id.rv_list);
         loaderManager=LoaderManager.getInstance(this);
         Bundle data = new Bundle();
-        data.putString("api", "http://10.0.2.2:8000/api/baiviet");
+        data.putString("api", "http://10.0.2.2:8000/api/tin-hot");
         if (loaderManager.getLoader(WEATHER_LOADER_ID) == null) {
             loaderManager.initLoader(WEATHER_LOADER_ID, data, FragmentHotnews.this);
         } else {
@@ -73,7 +73,7 @@ public class FragmentHotnews extends Fragment implements LoaderManager.LoaderCal
                 Image = String.valueOf(dataObject.get("hinhanh"));
                 Content=String.valueOf(dataObject.get("noidung"));
                 Description=String.valueOf(dataObject.get("mota"));
-                listBook.add(new Baiviet(0,Title,Description,Content,Image,null));
+                listBook.add(new Baiviet(0,Title,Description,Content,Image,null,null));
             }
             bookAdapter=new BaivietAdapter(listBook,getContext());
             RecyclerView.ItemDecoration itemDecoration=new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);

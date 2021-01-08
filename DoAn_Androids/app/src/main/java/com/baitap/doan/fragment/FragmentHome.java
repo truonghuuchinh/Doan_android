@@ -58,8 +58,6 @@ public class FragmentHome extends Fragment  implements LoaderManager.LoaderCallb
         recyclerView=itemView.findViewById(R.id.rv_list);
         loaderManager=LoaderManager.getInstance(this);
         Bundle data = new Bundle();
-
-
         data.putString("api", "http://10.0.2.2:8000/api/baiviet");
         if (loaderManager.getLoader(WEATHER_LOADER_ID) == null) {
             loaderManager.initLoader(WEATHER_LOADER_ID, data, FragmentHome.this);
@@ -82,16 +80,19 @@ public class FragmentHome extends Fragment  implements LoaderManager.LoaderCallb
             String Content=null;
             String Image=null;
             String Description=null;
+            String IdBaiviet=null;
             listBook=new LinkedList<Baiviet>();
             JSONObject jsonObject = new JSONObject(data);
             JSONArray dataArray=jsonObject.getJSONArray("data");
             for (int i=0;i<dataArray.length();i++){
                 JSONObject dataObject=(JSONObject)dataArray.get(i);
+
                 Title=String.valueOf(dataObject.get("tieude"));
                 Image = String.valueOf(dataObject.get("hinhanh"));
                 Content=String.valueOf(dataObject.get("noidung"));
                 Description=String.valueOf(dataObject.get("mota"));
-                listBook.add(new Baiviet(0,Title,Description,Content,Image,null));
+                IdBaiviet=String.valueOf(dataObject.get("id"));
+                listBook.add(new Baiviet(Integer.valueOf(IdBaiviet),Title,Description,Content,Image,null,null));
             }
             bookAdapter=new BaivietAdapter(listBook,getContext());
             RecyclerView.ItemDecoration itemDecoration=new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);

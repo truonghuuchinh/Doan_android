@@ -26,7 +26,8 @@ public class Login extends AppCompatActivity implements LoaderManager.LoaderCall
     public  static String  tenUser=null;
     public  static String  dateUser=null;
     public  static String  emailUser=null;
-    public    static  String password=null;
+    public  static String  IdlUser=null;
+    public  static  String password=null;
     //Tạo shareFreference
     SharedPreferences sharedPreferences;
     EditText editUsername, editPassword;
@@ -63,9 +64,9 @@ public class Login extends AppCompatActivity implements LoaderManager.LoaderCall
         try {
             int dem = 0;
             SharedPreferences.Editor editor=sharedPreferences.edit();
-            JSONObject jsonObject1=new JSONObject(data);
-            JSONArray dataArray=jsonObject1.getJSONArray("data");
-
+//            JSONObject jsonObject1=new JSONObject(data);
+//            JSONArray dataArray=jsonObject1.getJSONArray("data");
+            JSONArray dataArray=new JSONArray(data);
             for (int i=0;i<dataArray.length();i++){
                 JSONObject dataObject=(JSONObject)dataArray.get(i);
                 if(editUsername.getText().toString().equals(dataObject.getString("username")) && editPassword.getText().toString().equals(dataObject.getString("password"))) {
@@ -74,6 +75,7 @@ public class Login extends AppCompatActivity implements LoaderManager.LoaderCall
                     tenUser=dataObject.getString("username");
                     dateUser=dataObject.getString("ngaysinh");
                     emailUser=dataObject.getString("email");
+                    IdlUser=dataObject.getString("id");
                     password=dataObject.getString("password");
                     dem++;
                     if(checkBox1.isChecked()){
@@ -89,7 +91,6 @@ public class Login extends AppCompatActivity implements LoaderManager.LoaderCall
                     }
                     break;
                     //Đưa dau74 liệu vào reference
-
                 }
             }
             if(dem==0) {

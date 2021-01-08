@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.baitap.doan.Login;
 import com.baitap.doan.R;
 import com.baitap.doan.loadRecyclerView.AsyntaskLoader;
 import com.baitap.doan.loadRecyclerView.Baiviet;
@@ -43,7 +45,12 @@ public class FragmentFavorite extends Fragment implements LoaderManager.LoaderCa
         recyclerView=itemView.findViewById(R.id.rv_list);
         loaderManager=LoaderManager.getInstance(this);
         Bundle data = new Bundle();
-        data.putString("api", "http://10.0.2.2:8000/api/baiviet");
+        if(Login.IdlUser!=null){
+            data.putString("api", "http://10.0.2.2:8000/api/baivietyeuthich/getall");
+        }else{
+            data.putString("api", "");
+        }
+
         if (loaderManager.getLoader(WEATHER_LOADER_ID) == null) {
             loaderManager.initLoader(WEATHER_LOADER_ID, data, FragmentFavorite.this);
         } else {
@@ -60,30 +67,34 @@ public class FragmentFavorite extends Fragment implements LoaderManager.LoaderCa
 
     @Override
     public void onLoadFinished(@NonNull Loader<String> loader, String data) {
-        try {
-            String Title=null;
-            String Content=null;
-            String Image=null;
-            String Description=null;
-            listBook=new LinkedList<Baiviet>();
-            JSONObject jsonObject = new JSONObject(data);
-            JSONArray dataArray=jsonObject.getJSONArray("data");
-            for (int i=0;i<dataArray.length();i++){
-                JSONObject dataObject=(JSONObject)dataArray.get(i);
-                Title=String.valueOf(dataObject.get("tieude"));
-                Image = String.valueOf(dataObject.get("hinhanh"));
-                Content=String.valueOf(dataObject.get("noidung"));
-                Description=String.valueOf(dataObject.get("mota"));
-                listBook.add(new Baiviet(0,Title,Description,Content,Image,null));
-            }
-            bookAdapter=new BaivietAdapter(listBook,getContext());
-            RecyclerView.ItemDecoration itemDecoration=new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
-            recyclerView.addItemDecoration(itemDecoration);
-            recyclerView.setAdapter(bookAdapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        if(data==null){
+            Toast.makeText(getContext(),"Bạn chưa đăng nhập",Toast.LENGTH_SHORT).show();
+        }else {
+            try {
+                String Title = null;
+                String Content = null;
+                String Image = null;
+                String Description = null;
+                listBook = new LinkedList<Baiviet>();
+                JSONObject jsonObject = new JSONObject(data);
+                JSONArray dataArray = jsonObject.getJSONArray("data");
+                for (int i = 0; i < dataArray.length(); i++) {
+                    JSONObject dataObject = (JSONObject) dataArray.get(i);
+                    Title = String.valueOf(dataObject.get("tieude"));
+                    Image = String.valueOf(dataObject.get("hinhanh"));
+                    Content = String.valueOf(dataObject.get("noidung"));
+                    Description = String.valueOf(dataObject.get("mota"));
+                    listBook.add(new Baiviet(0, Title, Description, Content, Image, null, null));
+                }
+                bookAdapter = new BaivietAdapter(listBook, getContext());
+                RecyclerView.ItemDecoration itemDecoration = new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL);
+                recyclerView.addItemDecoration(itemDecoration);
+                recyclerView.setAdapter(bookAdapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        } catch (JSONException e) {
-            e.printStackTrace();
+            } catch (JSONException e) {
+
+            }
         }
     }
 

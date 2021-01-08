@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dp"
     android:orientation="vertical"
@@ -27,14 +30,37 @@
         android:text="Content"
         android:layout_margin="16dp"
         android:textSize="13sp" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_width="30dp"
-        android:layout_height="20dp"
-        android:layout_gravity="right"
-        android:layout_marginRight="20dp"
-        android:layout_marginBottom="10dp"
-        android:src="@drawable/bookmark" />
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_gravity="right"
+            android:id="@+id/like"
+            android:layout_marginEnd="8dp"
+            android:src="@drawable/like"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/yeuthich"
+            app:layout_constraintTop_toTopOf="@+id/yeuthich"
+            app:layout_constraintVertical_bias="0.0" />
+        <ImageView
+            android:id="@+id/yeuthich"
+            android:layout_width="30dp"
+            android:layout_height="20dp"
+            android:layout_gravity="right"
+            android:layout_marginEnd="4dp"
+            android:src="@drawable/yeuthich"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 
 
 </LinearLayout>
