@@ -11,19 +11,23 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.transition.FragmentTransitionSupport;
 import androidx.viewpager.widget.ViewPager;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.SearchView;
+import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baitap.doan.fragment.FragmentHome;
 import com.baitap.doan.fragmentMenu.Fragment_Sport;
+import com.baitap.doan.loadRecyclerView.BaivietAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
@@ -37,9 +41,11 @@ public class MainActivity extends AppCompatActivity {
     DrawerLayout drawerLayout;
     NavigationView navigationViews;
     ListView listView;
+    SearchView searchView;
     //Item menu
     ArrayList<ItemMenu> arrayList;
     MenuAdapter menuAdapter;
+    BaivietAdapter baivietAdapter;
     //Phần nội dung ứng dụng
     BottomNavigationView navigationView;
     ViewPager viewPager;
@@ -76,6 +82,22 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setMaxWidth(Integer.MAX_VALUE);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                baivietAdapter.getFilter().filter(query);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                baivietAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
     }
     void Anhxa(){
         viewPager=findViewById(R.id.view_item);
@@ -83,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar=(Toolbar)findViewById(R.id.toolbar);
         drawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
         navigationViews=(NavigationView)findViewById(R.id.navigation_view);
-//        searchView=(SearchView)findViewById(R.id.search_bar);
+        searchView=(SearchView) findViewById(R.id.search_bar);
         listView=(ListView)findViewById(R.id.listview);
     }
     private void actionMenu() {
@@ -191,4 +213,9 @@ public class MainActivity extends AppCompatActivity {
             navigationView.getMenu().findItem(R.id.action_home).setChecked(true);
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu );
+        return true;
+    }
 }
