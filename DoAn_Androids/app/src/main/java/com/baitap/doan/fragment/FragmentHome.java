@@ -86,7 +86,6 @@ public class FragmentHome extends Fragment  implements LoaderManager.LoaderCallb
             JSONArray dataArray=jsonObject.getJSONArray("data");
             for (int i=0;i<dataArray.length();i++){
                 JSONObject dataObject=(JSONObject)dataArray.get(i);
-
                 Title=String.valueOf(dataObject.get("tieude"));
                 Image = String.valueOf(dataObject.get("hinhanh"));
                 Content=String.valueOf(dataObject.get("noidung"));
