@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Doan">
-        <activity android:name=".PhanHoiNguoiDung"></activity>
+        <activity android:name=".PhanHoiNguoiDung" android:parentActivityName=".MainActivity"></activity>
         <activity
             android:name=".SearchActivity"
             android:parentActivityName=".MainActivity" />

@@ -33,6 +33,7 @@ public class PhanHoiNguoiDung extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 postLike(txtContent.getText().toString(),Login.IdlUser,"http://10.0.2.2:8000/api/phanhoinguoidung");
+                finish();
             }
         });
     }
@@ -42,7 +43,7 @@ public class PhanHoiNguoiDung extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if(response.equals("success")){
-                    Toast.makeText(PhanHoiNguoiDung.this,"Đã like",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PhanHoiNguoiDung.this,"Phản hồi thành công",Toast.LENGTH_SHORT).show();
                 }
             }
         }, new Response.ErrorListener() {

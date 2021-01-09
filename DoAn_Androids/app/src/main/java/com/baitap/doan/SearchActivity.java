@@ -36,6 +36,7 @@ public class SearchActivity extends AppCompatActivity implements LoaderManager.L
         setContentView(R.layout.activity_search);
         recyclerView=findViewById(R.id.rv_list);
         searchView=findViewById(R.id.search_baiviet);
+        searchView.requestFocus();
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
