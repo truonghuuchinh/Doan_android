@@ -1,20 +1,27 @@
 package com.baitap.doan.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
+import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
+import com.baitap.doan.DetailBaiviet;
+import com.baitap.doan.MainActivity;
 import com.baitap.doan.R;
 import com.baitap.doan.fragmentMenu.Fragment_Sport;
 import com.baitap.doan.loadRecyclerView.AsyntaskLoader;
@@ -28,7 +35,7 @@ import org.json.JSONObject;
 
 import java.util.LinkedList;
 
-public class FragmentHome extends Fragment implements LoaderManager.LoaderCallbacks<String> {
+public class FragmentHome extends Fragment  implements LoaderManager.LoaderCallbacks<String> {
     private RecyclerView recyclerView;
     BaivietAdapter bookAdapter;
     LinkedList<Baiviet> listBook;
@@ -42,7 +49,6 @@ public class FragmentHome extends Fragment implements LoaderManager.LoaderCallba
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        Log.d("message","Fragment 1");
     }
 
     @Nullable
@@ -72,16 +78,25 @@ public class FragmentHome extends Fragment implements LoaderManager.LoaderCallba
         try {
             String Title=null;
             String Content=null;
+            String Image=null;
+            String Description=null;
+            String IdBaiviet=null;
             listBook=new LinkedList<Baiviet>();
             JSONObject jsonObject = new JSONObject(data);
             JSONArray dataArray=jsonObject.getJSONArray("data");
             for (int i=0;i<dataArray.length();i++){
                 JSONObject dataObject=(JSONObject)dataArray.get(i);
+
                 Title=String.valueOf(dataObject.get("tieude"));
-                Content=String.valueOf(dataObject.get("mota"));
-                listBook.add(new Baiviet(0,Title,null,Content,null,null));
+                Image = String.valueOf(dataObject.get("hinhanh"));
+                Content=String.valueOf(dataObject.get("noidung"));
+                Description=String.valueOf(dataObject.get("mota"));
+                IdBaiviet=String.valueOf(dataObject.get("id"));
+                listBook.add(new Baiviet(Integer.valueOf(IdBaiviet),Title,Description,Content,Image,null,null));
             }
             bookAdapter=new BaivietAdapter(listBook,getContext());
+            RecyclerView.ItemDecoration itemDecoration=new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL);
+            recyclerView.addItemDecoration(itemDecoration);
             recyclerView.setAdapter(bookAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -94,4 +109,5 @@ public class FragmentHome extends Fragment implements LoaderManager.LoaderCallba
     public void onLoaderReset(@NonNull Loader<String> loader) {
 
     }
+
 }

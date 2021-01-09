@@ -17,7 +17,7 @@ import com.google.android.material.tabs.TabLayout;
 
 public class FragmentContainHome extends Fragment {
     private TabLayout tableLayout;
-    private ViewPager viewPager;
+    public static ViewPager viewPager;
     private  View itemView;
 
     public FragmentContainHome() {

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@drawable/back1"
+    android:orientation="horizontal"
     android:layout_height="match_parent"
     tools:context=".Login">
     <LinearLayout
@@ -39,16 +40,35 @@
             android:layout_marginBottom="10dp"
             android:inputType="textPassword"
             android:ems="15"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Quên mật khẩu?"
-            android:textColor="@color/red"
-            android:textSize="15sp"
-            android:id="@+id/quen_mat_khau"
-            android:layout_marginBottom="10dp"
-            android:layout_gravity="right"
-         android:layout_marginRight="20dp"/>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <CheckBox
+                android:id="@+id/checkBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="Nhớ đăng nhập"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0" />
+            <TextView
+                android:id="@+id/quen_mat_khau"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="Quên mật khẩu?"
+                android:textColor="@color/red"
+                android:textSize="15sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.734"
+                app:layout_constraintStart_toEndOf="@+id/checkBox"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
         <Button
             android:id="@+id/btndangnhap"
