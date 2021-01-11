@@ -41,6 +41,12 @@
         android:layout_marginTop="50dp"
         android:text="Bình luận" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerview_binh_luan"
+        android:layout_width="349dp"
+        android:layout_height="wrap_content"
+        android:background="@color/com_facebook_button_login_silver_background_color_pressed" />
+
     <EditText
         android:id="@+id/comment"
         android:layout_width="match_parent"
@@ -56,6 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:onClick="onGuiComment"
         android:text="Gửi" />
 </LinearLayout>
 </ScrollView>
