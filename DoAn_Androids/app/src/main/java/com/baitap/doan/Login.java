@@ -74,9 +74,9 @@ public class Login extends AppCompatActivity implements LoaderManager.LoaderCall
         try {
             int dem = 0;
             SharedPreferences.Editor editor=sharedPreferences.edit();
-//            JSONObject jsonObject1=new JSONObject(data);
-//            JSONArray dataArray=jsonObject1.getJSONArray("data");
-            JSONArray dataArray=new JSONArray(data);
+            JSONObject jsonObject1=new JSONObject(data);
+            JSONArray dataArray=jsonObject1.getJSONArray("data");
+//            JSONArray dataArray=new JSONArray(data);
             for (int i=0;i<dataArray.length();i++){
                 JSONObject dataObject=(JSONObject)dataArray.get(i);
                 if(editUsername.getText().toString().equals(dataObject.getString("username")) && editPassword.getText().toString().equals(dataObject.getString("password"))) {
@@ -120,7 +120,7 @@ public class Login extends AppCompatActivity implements LoaderManager.LoaderCall
 
     public void dangNhap(View view) {
         Bundle data = new Bundle();
-        data.putString("api", "http://10.0.2.2:8000//apiusers");
+        data.putString("api", "http://10.0.2.2:8000/api/users");
         if (loaderManager.getLoader(MaDangNhap) == null) {
             loaderManager.initLoader(MaDangNhap, data, Login.this);
         } else {

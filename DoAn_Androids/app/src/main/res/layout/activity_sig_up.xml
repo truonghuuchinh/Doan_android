@@ -67,6 +67,7 @@
             android:onClick="startSignUpSuccess"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="Đăng ký" />
+            android:text="Đăng ký"
+            />
     </LinearLayout>
 </RelativeLayout>
