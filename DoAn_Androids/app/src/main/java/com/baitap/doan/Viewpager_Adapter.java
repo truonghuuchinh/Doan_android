@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
 
 import com.baitap.doan.fragment.FragmentAccount;
+import com.baitap.doan.fragment.FragmentContainHome;
 import com.baitap.doan.fragment.FragmentFavorite;
 import com.baitap.doan.fragment.FragmentHome;
 import com.baitap.doan.fragment.FragmentHotnews;
@@ -30,35 +31,24 @@ public class Viewpager_Adapter  extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position){
             case 0:
-                return  new FragmentHome();
+                return  new FragmentContainHome();
             case 1:
                 return  new FragmentHotnews();
             case 2:
                 return  new FragmentFavorite();
             case 3:
-                return  new FragmentAccount();
-            case 4:
-                return  new Fragment_Sport();
-            case 5:
-                return  new Fragment_Thoisu();
-            case 6:
-                return  new Fragment_Amnhac();
-            case 7:
-                return  new Fragment_Phapluat();
-            case 8:
-                return  new Fragment_Giaoduc();
-            case 9:
-                return  new Fragment_Dulich();
-            case 10:
-                return  new Fragment_Khoahoc();
-            case 11:
-                return  new Fragment_Xe();
+                if(Login.tenUser==null){
+                    return  new FragmentAccount();
+
+                }else {
+                    return  new Fragment_Information_User();
+                }
             default:
                 return  new FragmentHome();
         }
     }
     @Override
     public int getCount() {
-        return 12;
+        return 4;
     }
 }

@@ -1,13 +1,52 @@
 package com.baitap.doan.loadRecyclerView;
 
 public class Baiviet {
+
+    int id;
     String title;
+    String mota;
     String content;
     String image;
+    String luotlike;
+    String yeuthich;
 
-    public Baiviet(String title, String content) {
+    public Baiviet(int id, String title, String mota, String content, String image, String luotlike, String yeuthich) {
+        this.id = id;
         this.title = title;
+        this.mota = mota;
         this.content = content;
+        this.image = image;
+        this.luotlike = luotlike;
+        this.yeuthich=yeuthich;
+    }
+    public String getYeuthich() {
+        return yeuthich;
+    }
+    public void setYeuthich(String yeuthich) {
+        this.yeuthich = yeuthich;
+    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getMota() {
+        return mota;
+    }
+
+    public void setMota(String mota) {
+        this.mota = mota;
+    }
+
+    public String getLuotlike() {
+        return luotlike;
+    }
+
+    public void setLuotlike(String luotlike) {
+        this.luotlike = luotlike;
     }
 
     public String getTitle() {

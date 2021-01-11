@@ -57,6 +57,5 @@ public class MenuAdapter extends BaseAdapter {
         TextView textView;
         ImageView imageView;
 
-
     }
 }
