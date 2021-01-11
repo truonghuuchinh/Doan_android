@@ -60,11 +60,11 @@ public class SigUp extends AppCompatActivity {
         datePickerDialog.show();
     }
     public void startSignUpSuccess(View view) {
-        postDangKi("http://10.0.2.2:8000/api/dangki");
+        postDangKi("http://10.0.2.2:8000/api/dang-ki");
 
     }
 void postDangKi(String url){
-        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        RequestQueue requestQueue= Volley.newRequestQueue(SigUp.this);
         StringRequest stringRequest=new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
