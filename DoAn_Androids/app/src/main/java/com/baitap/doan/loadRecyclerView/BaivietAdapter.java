@@ -38,6 +38,21 @@ public class BaivietAdapter extends  RecyclerView.Adapter<BaivietAdapter.Baiviet
         return mData.size();
     }
 
+<<<<<<< Updated upstream
+=======
+    void startDetail(int i){
+        baiviet=mData.get(i);
+        Intent intent=new Intent(context,DetailBaiviet.class);
+        intent.putExtra("id",String.valueOf(baiviet.id));
+        intent.putExtra("idUser",String.valueOf(Login.IdlUser));
+        intent.putExtra("username",String.valueOf(Login.tenUser));
+        intent.putExtra(Title_Baiviet,baiviet.title);
+        intent.putExtra(Hinanh_Baiviet,baiviet.image);
+        intent.putExtra(Noidung_Baiviet,baiviet.content);
+       context.startActivity(intent);
+    }
+
+>>>>>>> Stashed changes
     class  BaivietHolder extends  RecyclerView.ViewHolder{
         TextView Title;
         TextView Content;
