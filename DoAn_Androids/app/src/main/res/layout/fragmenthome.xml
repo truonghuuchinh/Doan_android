@@ -6,8 +6,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".fragment.FragmentHome">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
 </RelativeLayout>

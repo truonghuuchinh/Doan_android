@@ -3,11 +3,18 @@ package com.baitap.doan;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 import androidx.loader.app.LoaderManager;
 import androidx.loader.content.Loader;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -22,12 +29,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Calendar;
+
 public class Login extends AppCompatActivity implements LoaderManager.LoaderCallbacks<String> {
     public  static String  tenUser=null;
     public  static String  dateUser=null;
     public  static String  emailUser=null;
     public  static String  IdlUser=null;
     public  static  String password=null;
+    public  static  String NOTIFICATION="notification";
     //Tạo shareFreference
     SharedPreferences sharedPreferences;
     EditText editUsername, editPassword;
@@ -89,8 +99,10 @@ public class Login extends AppCompatActivity implements LoaderManager.LoaderCall
                         editor.remove("checked");
                         editor.commit();
                     }
+                    //Notification cho User
+                    createNotification(Calendar.getInstance().getTimeInMillis(),"Xin chào "+tenUser+" nhớ đọc báo thường xuyên nhé");
                     break;
-                    //Đưa dau74 liệu vào reference
+
                 }
             }
             if(dem==0) {
@@ -115,5 +127,28 @@ public class Login extends AppCompatActivity implements LoaderManager.LoaderCall
             loaderManager.restartLoader(MaDangNhap, data, Login.this);
         }
 
+    }
+    private  void createNotification(long when,String data){
+        String Title="Thông báo mới";
+        int smallIcon=R.drawable.logobaos;
+        String  Content="Nội dung nhấn xem chi tiết";
+        Bitmap bitmap= BitmapFactory.decodeResource(getResources(),R.drawable.logobaos);
+        Intent intent=new Intent(Login.this,NotificationDetail.class);
+        intent.putExtra(NOTIFICATION,data);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        PendingIntent pendingIntent=PendingIntent.getActivity(this,0,intent,0);
+        NotificationManager notificationManager=(NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+      NotificationCompat.Builder builder=new NotificationCompat.Builder(getApplicationContext());
+      builder.setWhen(when)
+              .setContentText(Content)
+              .setContentTitle(Title)
+              .setSmallIcon(smallIcon)
+              .setAutoCancel(true)
+              .setTicker(Title)
+              .setLargeIcon(bitmap)
+              .setDefaults(Notification.DEFAULT_LIGHTS|Notification.DEFAULT_SOUND|Notification.DEFAULT_VIBRATE)
+              .setContentIntent(pendingIntent);
+      Notification notification=builder.build();
+      notificationManager.notify((int)when,notification);
     }
 }
