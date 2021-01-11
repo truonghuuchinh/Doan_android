@@ -35,11 +35,14 @@ public class Viewpager_Adapter  extends FragmentStatePagerAdapter {
             case 1:
                 return  new FragmentHotnews();
             case 2:
-                return  new FragmentFavorite();
+                if(Login.tenUser==null){
+                    return  new FragmentAccount();
+                }else {
+                    return  new FragmentFavorite();
+                }
             case 3:
                 if(Login.tenUser==null){
                     return  new FragmentAccount();
-
                 }else {
                     return  new Fragment_Information_User();
                 }

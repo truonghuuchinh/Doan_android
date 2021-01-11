@@ -102,7 +102,6 @@ public class Login extends AppCompatActivity implements LoaderManager.LoaderCall
                     //Notification cho User
                     createNotification(Calendar.getInstance().getTimeInMillis(),"Xin chào "+tenUser+" nhớ đọc báo thường xuyên nhé");
                     break;
-
                 }
             }
             if(dem==0) {

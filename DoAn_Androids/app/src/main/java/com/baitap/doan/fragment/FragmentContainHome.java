@@ -29,7 +29,7 @@ public class FragmentContainHome extends Fragment {
                              Bundle savedInstanceState) {
         itemView= inflater.inflate(R.layout.fragment_contain_home, container, false);
         tableLayout=itemView.findViewById(R.id.tablayout);
-        viewPager=itemView.findViewById(R.id.viewPager);
+        viewPager=itemView.findViewById(R.id.viewPagers);
         Viewpager_Category viewpager_category=new Viewpager_Category(getChildFragmentManager(), FragmentStatePagerAdapter.BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT);
         viewPager.setAdapter(viewpager_category);
         tableLayout.setupWithViewPager(viewPager);

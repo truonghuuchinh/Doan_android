@@ -184,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
         if(txt.getText().toString().contains("Xe")){
             position=8;
         }
+        viewPager.setCurrentItem(0);
         FragmentContainHome.viewPager.setCurrentItem(position);
         Flag=n;
             Toast.makeText(MainActivity.this, txt.getText().toString(), Toast.LENGTH_SHORT).show();
