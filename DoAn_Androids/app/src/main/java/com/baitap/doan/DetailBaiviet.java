@@ -66,11 +66,8 @@ public class DetailBaiviet extends AppCompatActivity implements LoaderManager.Lo
         title=findViewById(R.id.tieudeDetail);
         webView=findViewById(R.id.contents);
         imageView=findViewById(R.id.imgDetail);
-
         txtComment = findViewById(R.id.comment);
         btnGui = findViewById(R.id.btn_send);
-
-
         loaderManager = LoaderManager.getInstance(this);
         Intent intent=getIntent();
         Picasso.with(this).load("http://10.0.2.2:8000/img/upload/"+intent.getStringExtra(BaivietAdapter.Hinanh_Baiviet).toString()).into(imageView);
@@ -82,7 +79,6 @@ public class DetailBaiviet extends AppCompatActivity implements LoaderManager.Lo
         username =intent.getStringExtra("username");
         Log.d("testid",idUser);
         Log.d("testid",username);
-
         Bundle data = new Bundle();
         data.putString("api", "http://10.0.2.2:8000/api/get-binh-luan?id="+idBaiViet);
         if (loaderManager.getLoader(BINHLUAN_LOADER_ID) == null) {
@@ -104,23 +100,18 @@ public class DetailBaiviet extends AppCompatActivity implements LoaderManager.Lo
         try {
             String username=null;
             String noidung=null;
-
             dsBinhLuan =new LinkedList<>();
             JSONObject jsonObject = new JSONObject(data);
             JSONArray dataArray=jsonObject.getJSONArray("data");
             for (int i=0;i<dataArray.length();i++){
                 JSONObject dataObject=(JSONObject)dataArray.get(i);
-
                 username=String.valueOf(dataObject.get("username"));
                 noidung = String.valueOf(dataObject.get("noidungbinhluan"));
                 dsBinhLuan.add(new BinhLuan(username,noidung));
             }
-
             binhLuanAdapter = new BinhLuanAdapter(this,dsBinhLuan);
             recyclerView.setAdapter(binhLuanAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
-
         } catch (JSONException e) {
             e.printStackTrace();
         }

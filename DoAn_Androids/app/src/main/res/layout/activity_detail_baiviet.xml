@@ -44,7 +44,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerview_binh_luan"
-        android:layout_width="349dp"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:background="@color/com_facebook_button_login_silver_background_color_pressed" />
 

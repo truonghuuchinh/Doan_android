@@ -42,7 +42,7 @@ public class Viewpager_Category extends FragmentStatePagerAdapter {
             case 8:
                 return  new Fragment_Xe();
             default:
-                return  new Fragment_Sport();
+                return  new FragmentHome();
         }
     }
 

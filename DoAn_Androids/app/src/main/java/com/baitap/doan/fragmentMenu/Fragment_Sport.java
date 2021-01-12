@@ -67,6 +67,7 @@ public class Fragment_Sport extends Fragment implements LoaderManager.LoaderCall
             String Content=null;
             String Image=null;
             String Description=null;
+            String IdBaiviet=null;
             listBook=new LinkedList<Baiviet>();
             JSONObject jsonObject = new JSONObject(data);
             JSONArray dataArray=jsonObject.getJSONArray("data");
@@ -78,7 +79,8 @@ public class Fragment_Sport extends Fragment implements LoaderManager.LoaderCall
                     Image = String.valueOf(dataObject.get("hinhanh"));
                     Content=String.valueOf(dataObject.get("noidung"));
                     Description=String.valueOf(dataObject.get("mota"));
-                    listBook.add(new Baiviet(0,Title,Description,Content,Image,null,null));
+                    IdBaiviet=String.valueOf(dataObject.get("id"));
+                    listBook.add(new Baiviet(Integer.valueOf(IdBaiviet),Title,Description,Content,Image,null,null));
                 }
             }
             bookAdapter=new BaivietAdapter(listBook,getContext());
